@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <script src="bower_components/bitcore-lib/bitcore-lib.min.js"></script>
+</head>
+
+<body>
+    <h1> HD Derivation test </h1>
+    <h2> Test result: </h2>
+<div id="result"></div> 
+    
+
+  <script type="text/javascript">
+    document.getElementById("result").innerHTML = "running...";
+    var bitcore = require('bitcore-lib');
+    var xp = bitcore.HDPrivateKey("tprv8ZgxMBicQKsPebv8CVghFoaaZ6ejmcSmSaKo99sUnswCCPeccGbLzfoksA2wd5XdHe8UHLwM2emuBWD4cBvQ7BPTJhFu75u3HcSjRVFmYM9");
+
+    var pub = xp.derive("m/44'/1'/0'").hdPublicKey.toString();
+    if ( pub == 'tpubDCe5stHkJZhfNMpQLgqRVYjSfADoosJ7FvxukgyXf1YzrCnru2z61giPXbgJGGxnHt922CY22DDDYD6d28jnd9okctoXNW837TmbNaAEM99') {
+        document.getElementById("result").innerHTML = "OK";
+    } else {
+        document.getElementById("result").innerHTML = "FAIL. PLEASE REPORT YOUR DEVICE AT matias@bitpay.com. Result was:" + pub;
+    }
+  </script>
+
+</body>
+
+</html>
